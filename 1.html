@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Love Story</title>
+    <style>
+        :root {
+            --primary-color: #ff6b9e;
+            --secondary-color: #ff4b8b;
+            --background-color: #f4f4f4;
+            --text-color: #333;
+            --accent-color: #8a2be2;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .love-quote {
+            font-style: italic;
+            color: var(--accent-color);
+            margin-bottom: 2rem;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 1s, transform 1s;
+        }
+
+        .love-quote.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .love-letter {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin: 2rem 0;
+            position: relative;
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .love-letter:hover {
+            transform: scale(1.02);
+        }
+
+        .envelope {
+            width: 300px;
+            height: 200px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            margin: 0 auto;
+            position: relative;
+            perspective: 1000px;
+            transition: transform 0.6s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+        }
+
+        .envelope-content {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: white;
+            opacity: 0;
+            transform: rotateX(-180deg);
+            transition: opacity 0.6s, transform 0.6s;
+        }
+
+        .envelope.open .envelope-content {
+            opacity: 1;
+            transform: rotateX(0);
+        }
+
+        .letter-text {
+            text-align: left;
+            max-width: 500px;
+            margin: 0 auto;
+            color: var(--text-color);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .heart-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+
+        .heart {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="rgba(255,107,158,0.3)"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>') no-repeat center;
+            background-size: contain;
+            opacity: 0;
+        }
+
+        .music-control {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            cursor: pointer;
+        }
+
+        .memory-gallery {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .memory-item {
+            width: 150px;
+            height: 150px;
+            border-radius: 10px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+
+        .memory-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .memory-item:hover {
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="heart-background" id="heartBackground"></div>
+    
+    <div class="container">
+        <div class="love-quote" id="loveQuote">
+            "In all the world, there is no heart for me like yours. In all the world, there is no love for you like mine."
+        </div>
+
+        <div class="love-letter" id="loveLetter">
+            <div class="envelope" id="envelope">
+              Click Here
+                <div class="envelope-content">
+                    <div class="letter-text">
+                        My dearest love,
+                        
+                        Every moment with you is a treasure. Your love fills my world with light, warmth, and endless joy. You are my partner, my best friend, and my soulmate.
+                        <br><br>
+                        Forever yours,<br>
+                        Abhinav
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="memory-gallery">
+            <div class="memory-item">
+                <img src="/media/1.jpg" alt="Memory 1">
+            </div>
+            <div class="memory-item">
+                <img src="/media/2.jpg" alt="Memory 2">
+            </div>
+            <div class="memory-item">
+                <img src="/media/3.jpg" alt="Memory 3">
+            </div>
+        </div>
+    </div>
+    <center>Tap Thrice to play music</center>
+
+    <div class="music-control" id="musicControl">
+        <span>⏯️</span>
+        <audio id="backgroundMusic" loop autoplay>
+            <source src="/song.mp3" type="audio/mpeg">
+        </audio>
+    </div>
+
+    <script>
+        // Custom Heart Animation
+        function createHearts() {
+            const background = document.getElementById('heartBackground');
+            const heartsCount = 300;
+
+            for (let i = 0; i < heartsCount; i++) {
+                const heart = document.createElement('div');
+                heart.classList.add('heart');
+                
+                // Random positioning
+                heart.style.left = `${Math.random() * 100}%`;
+                heart.style.top = `${Math.random() * 100}%`;
+                
+                // Staggered animation
+                heart.style.animationDelay = `${Math.random() * 5}s`;
+                
+                background.appendChild(heart);
+
+                // Custom float animation
+                animateHeart(heart);
+            }
+        }
+
+        function animateHeart(heart) {
+            const duration = Math.random() * 10 + 5;
+            const delay = Math.random() * 5;
+
+            setTimeout(() => {
+                heart.animate([
+                    { transform: 'translateY(0) scale(0)', opacity: 0 },
+                    { transform: 'translateY(-100vh) scale(1)', opacity: 0.5 },
+                    { transform: 'translateY(-200vh) scale(0)', opacity: 0 }
+                ], {
+                    duration: duration * 1000,
+                    iterations: Infinity,
+                    easing: 'ease-in-out'
+                });
+            }, delay * 1000);
+        }
+
+        // Envelope Interaction
+        const envelope = document.getElementById('envelope');
+        envelope.addEventListener('click', () => {
+            envelope.classList.toggle('open');
+        });
+
+        // Love Quote Animation
+        const loveQuote = document.getElementById('loveQuote');
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                loveQuote.classList.add('visible');
+            }, 500);
+        });
+
+        // Music Control
+        const musicControl = document.getElementById('musicControl');
+        const backgroundMusic = document.getElementById('backgroundMusic');
+        let isPlaying = false;
+
+        document.addEventListener('click', () => {
+            if (!isPlaying) {
+                backgroundMusic.play();
+                musicControl.innerHTML = '🎵';
+            }
+            isPlaying = !isPlaying;
+        });
+        musicControl.addEventListener('click', () => {
+            if (isPlaying) {
+                backgroundMusic.pause();
+                musicControl.innerHTML = '🔇';
+            }
+            isPlaying = !isPlaying;
+        });
+
+        // Initialize
+        createHearts();
+    </script>
+</body>
+</html>
