@@ -264,7 +264,7 @@ h2 {
     }
 
     .grid-item:nth-child(1) .fancybox {
-      background-image: url(/media/chands-1.jpg);
+      background-image: url(media/chands-1.jpg);
     }
 
     .grid-item:nth-child(2) .fancybox {
